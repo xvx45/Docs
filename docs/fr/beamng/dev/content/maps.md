@@ -1,12 +1,12 @@
-!!! warning "This site is under construction!"
+!!! warning "Ce site est en construction !"
 
-    This site is being actively worked on. 
-    
-    Feel you could help? Please do by clicking on the page with a pencil on the right!
+    Ce site est actuellement en cours de construction.
 
-    This can be done any page too.
+    Pensez-vous pouvoir aider ? N'hésitez pas en cliquant sur la page avec un crayon à droite !
 
-# BeamNG.drive Map Creation
+    Cela peut également être fait sur n'importe quelle page.
+
+# BeamNG.drive Création de carte
 
 ...
 

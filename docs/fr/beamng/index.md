@@ -1,5 +1,5 @@
 # Welcome to the BeamNG.drive documentation
-This documentation is unofficial and produced by the BeamMP Mod Team and the BeamNG Community.
+Cette documentation n'est pas officielle et est produite par l'équipe du Mod BeamMP et la communauté BeamNG.
 
 ## Understanding The File Structure
 ...
@@ -7,4 +7,4 @@ This documentation is unofficial and produced by the BeamMP Mod Team and the Bea
 
 ## Snippets
 
-Helpful code snippets can be found here: [Snippets](snippets.md)
+Des extraits de code utiles peuvent être trouvés ici: [Snippets](snippets.md)

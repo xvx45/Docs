@@ -1,20 +1,20 @@
-!!! warning "This site is under construction!"
+!!! warning "Ce site est en construction !"
 
-    This site is being actively worked on. 
-    
-    Feel you could help? Please do by clicking on the page with a pencil on the right!
+    Ce site est actuellement en cours de construction.
 
-    This can be done any page too.
+    Pensez-vous pouvoir aider ? N'hésitez pas en cliquant sur la page avec un crayon à droite !
+
+    Cela peut également être fait sur n'importe quelle page.
     
 # BeamNG.drive Snippets
 
 ## Lua Code Snippets
 
-### Drawing a marker & Vehicle detection
+### Dessiner un marqueur & détection de véhicules
 
-Drawing markers in the map can be one of the best ways to indicate to the user that there is some form of interaction that they can do there.
+Dessiner des marqueurs sur la carte peut être l'un des meilleurs moyens d'indiquer à l'utilisateur qu'il y a une forme d'interaction possible à cet endroit.
 
-Drawing a marker is fairly easy. Here is an example of how the bus route marker is drawn:
+Dessiner un marqueur est assez simple. Voici un exemple de comment les marqueurs de l'itinéraire du bus est dessiné:
 
 ```Lua
   local function createBusMarker(markerName)
@@ -41,8 +41,8 @@ Drawing a marker is fairly easy. Here is an example of how the bus route marker 
     return marker
   end
 
-  -- this can then be called in a loop to setup your markers. 
-  -- NOTE: You should only do this once as part of your setup and not called on each frame.
+  -- Cela peut être appelé dans une boucle pour configurer vos marqueurs.. 
+  -- NOTE: Vous devriez ne le faire qu'une seule fois dans votre configuration initiale et ne pas l'appeler à chaque frame.
   if #markers == 0 then
     for k,v in pairs(nameMarkers) do
       local mk = scenetree.findObject(v)
@@ -56,7 +56,7 @@ Drawing a marker is fairly easy. Here is an example of how the bus route marker 
   end
 ```
 
-Here is a custom marker example from [BeamNG-FuelStations](https://github.com/BeamMP/BeamNG-FuelStations/tree/master):
+Voici un exemple de marqueur personnalisé provenant de [BeamNG-FuelStations](https://github.com/BeamMP/BeamNG-FuelStations/tree/master):
 
 ```Lua
   local stations = [
@@ -69,14 +69,14 @@ Here is a custom marker example from [BeamNG-FuelStations](https://github.com/Be
   end
 
   local onUpdate = function (dt)
-    for k, spot in pairs(stations) do -- loop through all spots on the current map
+    for k, spot in pairs(stations) do -- Parcourir tous les emplacements sur la carte actuelle
       local bottomPos = vec3(spot.location[1], spot.location[2], spot.location[3])
-      local topPos = bottomPos + vec3(0,0,2) -- offset vec to get top position (2m tall)
+      local topPos = bottomPos + vec3(0,0,2) -- Décaler le vecteur pour obtenir une position supérieure (2 mètres de hauteur).
 
-      local spotInRange = false -- is this spot in range? used for color
-      local spotCompatible = false -- is this spot compatible?
+      local spotInRange = false -- Ce point est-il dans la plage ? Utilisé pour la couleur
+      local spotCompatible = false -- Ce point est-il compatible ?
 
-      if activeVeh then -- we have a car and its ours (if in mp)
+      if activeVeh then -- Nous avons une voiture et elle est à nous (si en multijoueur)
         local vehPos = activeVeh:getPosition()
 
         spotInRange = IsEntityInsideArea(vec3(vehPos.x, vehPos.y,vehPos.z), bottomPos, 1.5)
@@ -86,23 +86,23 @@ Here is a custom marker example from [BeamNG-FuelStations](https://github.com/Be
 
       local spotColor = (spotInRange and spotCompatible) and activeColorMap[spot.type] or inactiveColorMap[spot.type] or ColorF(1,1,1,0.5)
 
-      debugDrawer:drawCylinder(bottomPos:toPoint3F(), topPos:toPoint3F(), 1, spotColor) --bottom, top, radius, color
+      debugDrawer:drawCylinder(bottomPos:toPoint3F(), topPos:toPoint3F(), 1, spotColor) --Bas, haut, rayon, couleur
     end
   end
 ```
 
-### guihooks examples
-#### Toast Notifications, Top right of screen
+### exemples de guihooks
+#### Notifications Toast, en haut à droite de l'écran.
 ![image](https://github.com/StanleyDudek/Docs/assets/49531350/c8a87842-b95a-4eca-84dc-93072ecc9158)
 
 ```lua
 --guihooks.trigger('toastrMsg', {type, title, msg, config = {timeOut}}) 
-guihooks.trigger('toastrMsg', {type = "info", title = "Info Message:", msg = "Info Message Text Here", config = {timeOut = 5000}}) 
-guihooks.trigger('toastrMsg', {type = "warning", title = "Warning Message:", msg = "Warning Message Text Here", config = {timeOut = 5000}}) 
-guihooks.trigger('toastrMsg', {type = "error", title = "Error Message:", msg = "Error Message Text Here", config = {timeOut = 5000}}) 
+guihooks.trigger('toastrMsg', {type = "info", title = "Message d'information:", msg = "Message d'information : Texte ici", config = {timeOut = 5000}}) 
+guihooks.trigger('toastrMsg', {type = "warning", title = "Message d'avertissement:", msg = "Message d'avertissement : Texte ici", config = {timeOut = 5000}}) 
+guihooks.trigger('toastrMsg', {type = "error", title = "Message d'erreur:", msg = "Message d'erreur : Texte ici", config = {timeOut = 5000}}) 
 ```
 
-#### Message notifications, top left of screen by default in Messages app
+#### Notifications, par défaut en haut à gauche de l'écran dans l'application Messages.
 ![image](https://github.com/StanleyDudek/Docs/assets/49531350/6baef813-50cb-43c3-9c59-0de550b014b6)
 
 ```lua
@@ -120,32 +120,32 @@ guihooks.trigger('Message', {msg = "Message Text Here", ttl = 5.0, category = "t
 guihooks.trigger('Message', {msg = "Message Text Here", ttl = 5.0, category = "save", icon = "save"}) 
 guihooks.trigger('Message', {msg = "Message Text Here", ttl = 5.0, category = "settings", icon = "settings"}) 
 ```
-#### Center large or small display flash
+#### Flash d'affichage centré, grand ou petit
 ![image](https://github.com/StanleyDudek/Docs/assets/49531350/d0cf754f-83f8-4d15-9159-27350da127de)
 ![image](https://github.com/StanleyDudek/Docs/assets/49531350/1df6fc9b-756f-484e-b8d9-5df346dc4c26)
 
 ```lua
---guihooks.trigger('ScenarioFlashMessage', {{msg, ttl, sound, big}} ) -- requires RaceCountdown ui app
+--guihooks.trigger('ScenarioFlashMessage', {{msg, ttl, sound, big}} ) -- Nécessite l'application RaceCountdown UI
 guihooks.trigger('ScenarioFlashMessage', {{"Message", 5.0, 0, true}} ) 
 guihooks.trigger('ScenarioFlashMessage', {{"Message Text Here", 5.0, 0, false}} ) 
 
---countdown example, when all executed at once, the items are queued and will follow eachother after the previous ttl expires
+--Exemple de compte à rebours : lorsque tous sont exécutés en même temps, les éléments sont mis en file d'attente et suivront les uns après les autres une fois que le délai d'expiration précédent est écoulé
 guihooks.trigger('ScenarioFlashMessage', {{"3", 1.0, "Engine.Audio.playOnce('AudioGui', 'event:UI_Countdown1')", true}}) 
 guihooks.trigger('ScenarioFlashMessage', {{"2", 1.0, "Engine.Audio.playOnce('AudioGui', 'event:UI_Countdown2')", true}}) 
 guihooks.trigger('ScenarioFlashMessage', {{"1", 1.0, "Engine.Audio.playOnce('AudioGui', 'event:UI_Countdown3')", true}}) 
 guihooks.trigger('ScenarioFlashMessage', {{"GO!", 3.0, "Engine.Audio.playOnce('AudioGui', 'event:UI_CountdownGo')", true}}) 
 
---another sound example
+--Un autre exemple de son
 guihooks.trigger('ScenarioFlashMessage', {{"Teleported!", 3.0, "Engine.Audio.playOnce('AudioGui', 'event:UI_Checkpoint')", false}}) 
 ```
 
-#### Center mid-size persistent display
+#### Affichage persistant de taille moyenne au centre
 ![image](https://github.com/StanleyDudek/Docs/assets/49531350/6290e018-6b3d-4674-98f2-34282a723258)
 ```lua
---guihooks.trigger('ScenarioRealtimeDisplay', {msg = msg} ) -- requires Race Realtime Display ui app
+--guihooks.trigger('ScenarioRealtimeDisplay', {msg = msg} ) -- Nécessite l'application Race Realtime Display UI
 guihooks.trigger('ScenarioRealtimeDisplay', {msg = "Message Text Here"} )
---these messages persist, clear with a blank string
---if you are running live data, this is a good one to update rapidly (think timers, distance calcs, et cetera)
+--Ces messages persistent et sont effacés avec une chaîne vide
+--Si vous utilisez des données en temps réel, celui-ci est bon pour les mises à jour rapides (pensez aux chronomètres, aux calculs de distance, etc.).
 guihooks.trigger('ScenarioRealtimeDisplay', {msg = ""} )
 ```
 
