@@ -1,7 +1,7 @@
-# Welcome to the BeamNG.drive documentation
+# Bienvenue sur la documentation BeamNG.drive
 Cette documentation n'est pas officielle et est produite par l'équipe du Mod BeamMP et la communauté BeamNG.
 
-## Understanding The File Structure
+## Comprendre la structure des fichiers
 ...
 
 
